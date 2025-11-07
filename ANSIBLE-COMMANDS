@@ -77,4 +77,11 @@ sudo kill -9 portno
 
 kubectl delete namespace fullstack-app
 
+============================================================
+EMERGENCY
+
+git pull --no-rebase origin main
+
+
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 ============END=======================

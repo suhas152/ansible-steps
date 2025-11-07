@@ -1,0 +1,80 @@
+sudo apt update && sudo apt upgrade -y
+
+==========================================
+
+
+sudo apt install -y python3 python3-pip python3-venv
+python3 --version
+pip3 --version
+
+================================================
+
+sudo apt install -y software-properties-common git curl apt-transport-https ca-certificates gnupg lsb-release
+
+#### 4️⃣ Install Ansible
+
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install -y ansible
+ansible --version
+
+#### 5️⃣ Install kubectl (official stable v1.30 repo)
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | \
+sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
+https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | \
+sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt update
+sudo apt install -y kubectl
+kubectl version --client
+
+#### 6️⃣ If you already have K3s (Kubernetes lightweight cluster)
+
+# Install K3s (lightweight Kubernetes)
+curl -sfL https://get.k3s.io | sh -
+
+# Check K3s service status
+sudo systemctl status k3s
+
+# Wait until it shows "active (running)"
+
+# Verify if K3s config file exists now
+ls /etc/rancher/k3s/k3s.yaml
+
+# Set permissions and copy config to your user
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+mkdir -p ~/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+sudo chown $(id -u):$(id -g) ~/.kube/config
+
+# Verify K3s node is registered
+kubectl get nodes
+
+
+===================================================
+
+mkdir ansible-project
+cd ansible-project
+
+======================================================
+
+
+ansible-playbook -i inventory.ini playbook-deploy.yml
+
+========================================================
+
+kubectl get pods -n fullstack-app
+kubectl get all -n fullstack-app
+========================================================
+ps aux | grep kubectl
+
+pgrep -a kubectl
+
+sudo kill -9 portno
+
+kubectl delete namespacce fullstack-app
+
+============END=======================

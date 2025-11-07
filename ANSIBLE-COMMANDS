@@ -75,6 +75,6 @@ pgrep -a kubectl
 
 sudo kill -9 portno
 
-kubectl delete namespacce fullstack-app
+kubectl delete namespace fullstack-app
 
 ============END=======================

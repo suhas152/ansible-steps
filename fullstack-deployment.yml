@@ -28,9 +28,9 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: password     # ⚠️ change this for production
+              value: root     # ⚠️ change this for production
             - name: MYSQL_DATABASE
-              value: projectdb
+              value: userdbexam
           volumeMounts:
             - name: mysql-storage
               mountPath: /var/lib/mysql
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: suhas15234/ansible-backend:latest  # <-- change this
+          image: suhas15234/ansible-lab-backend:latest  # <-- change this
           ports:
             - containerPort: 2000
 ---
@@ -87,7 +87,7 @@ spec:
     - protocol: TCP
       port: 2000
       targetPort: 2000
-      nodePort: 30025        
+      nodePort: 30022        
   type: NodePort
 ---
 # ===========================
@@ -110,7 +110,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: suhas15234/ansible-frontend:latest  # <-- change this
+          image: suhas15234/ansible-lab-frontend:latest  # <-- change this
           ports:
             - containerPort: 80
 ---
@@ -126,5 +126,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30080        
+      nodePort: 30021       
   type: NodePort

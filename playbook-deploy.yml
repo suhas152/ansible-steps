@@ -7,8 +7,8 @@
   vars:
     k8s_namespace: fullstack-app
     k8s_manifest_path: "./k8/fullstack-deployment.yml"
-    frontend_nodeport: 30080
-    backend_nodeport: 30025
+    frontend_nodeport: 30021
+    backend_nodeport: 30022
     kubeconfig: /etc/rancher/k3s/k3s.yaml
 
   tasks:

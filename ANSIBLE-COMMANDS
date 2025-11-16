@@ -84,4 +84,8 @@ git pull --no-rebase origin main
 
 
 sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+
+nohup kubectl port-forward svc/backend-service 30025:2000 -n fullstack-app >/tmp/backend.log 2>&1 &
+nohup kubectl port-forward svc/frontend-service 30080:80 -n fullstack-app >/tmp/frontend.log 2>&1 &
+
 ============END=======================
